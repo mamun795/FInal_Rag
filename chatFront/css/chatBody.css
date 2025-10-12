@@ -4,18 +4,18 @@
 
 
 #chat-body {
-  flex: 1;
-  padding: 10px;
-  overflow-y: auto;
+  flex: 1 1 auto;           /* take remaining space between header and footer */
   display: flex;
   flex-direction: column;
-  align-items: center;         /* Center horizontally */
-  justify-content: center;     /* Center vertically */
-  background: #fafafa;
-  position: relative;
-  transition: all 0.2s ease;
+  gap: 8px;
+  padding: 12px;
+  overflow-y: auto;          /* enable vertical scroll */
+  max-height: calc(80vh - 100px); /* optional: ensure it fits in viewport */
+  box-sizing: border-box;
   scroll-behavior: smooth;
+  background: #fff;
 }
+
 
 /* When chat has messages, it should scroll normally (not centered anymore) */
 #chat-body.active {
