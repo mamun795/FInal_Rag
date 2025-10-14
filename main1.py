@@ -13,7 +13,7 @@ from langchain.chains import create_retrieval_chain
 from langchain.chains.combine_documents import create_stuff_documents_chain
 
 # -----------------------------------------------------
-# 🌐 FastAPI setup
+#  FastAPI setup
 # -----------------------------------------------------
 app = FastAPI()
 load_dotenv()
@@ -27,18 +27,18 @@ chat_History = [
 ]
 
 # -----------------------------------------------------
-# ✅ Enable CORS for your frontend
+#  Enable CORS for your frontend
 # -----------------------------------------------------
 app.add_middleware(
     CORSMiddleware,
-    allow_origins=["*"],  # For local dev, allow all; in production, use your frontend URL
+    allow_origins=["*"], 
     allow_credentials=True,
     allow_methods=["*"],
     allow_headers=["*"],
 )
 
 # -----------------------------------------------------
-# 🔍 Create Vector Store
+#  Create Vector Store
 # -----------------------------------------------------
 def get_vectore(url):
     try:
@@ -57,7 +57,7 @@ def get_vectore(url):
     return vector_store
 
 # -----------------------------------------------------
-# 🤖 Create Conversational RAG Chain
+#  Create Conversational RAG Chain
 # -----------------------------------------------------
 def get_conversational_rag_chain(vector_store):
     llm = ChatGoogleGenerativeAI(
@@ -109,13 +109,13 @@ def get_response(user_input):
     return answer or "No answer found."
 
 # -----------------------------------------------------
-# 🧾 Pydantic Model
+#  Pydantic Model
 # -----------------------------------------------------
 class WebsiteInput(BaseModel):
     web: str
 
 # -----------------------------------------------------
-# 🌍 Process Website Endpoint
+#  Process Website Endpoint
 # -----------------------------------------------------
 @app.post("/process_url")
 def process_url(data: WebsiteInput):
@@ -127,12 +127,12 @@ def process_url(data: WebsiteInput):
         global conversationnal_chain
         conversationnal_chain = get_conversational_rag_chain(vectore_store)
 
-        return {"message": "✅ Website processed successfully! You can now chat."}
+        return {"message": " Website processed successfully! You can now chat."}
     except Exception as e:
-        return {"Note": "⚠️ Website is not correct or could not be loaded."}
+        return {"Note": " Website is not correct or could not be loaded."}
 
 # -----------------------------------------------------
-# 💬 Chat Message Endpoint
+#  Chat Message Endpoint
 # -----------------------------------------------------
 @app.post("/send_msg")
 def send_msg1(data: WebsiteInput):
